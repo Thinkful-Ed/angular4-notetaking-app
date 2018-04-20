@@ -1,3 +1,9 @@
-<p>
-  notes works!
-</p>
+<main>
+<nav class="notes">
+<ul>
+  <li *ngFor="let note of notes">
+    <span>{{note.title}}</span> {{note.body}}
+  </li>
+</ul>
+</nav>
+</main>
