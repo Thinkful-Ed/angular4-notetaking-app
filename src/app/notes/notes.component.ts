@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Note } from '../note';
-import { NOTES } from '../mock-data';
 
 
 @Component({
@@ -9,10 +8,13 @@ import { NOTES } from '../mock-data';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  notes = NOTES;
+  @Input() _notes;
   constructor() { }
 
   ngOnInit() {
   }
+  ngOnChanges() {
+        console.log('onChange fired');
+    }
 
 }

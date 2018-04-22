@@ -1,0 +1,8 @@
+<article>
+<form #noteForm="ngForm" id="note-edit-form" (ngSubmit)="submitForm(noteForm)">
+      <input [(ngModel)]="note.title" placeholder="title" name="title" #title="ngModel" required/>
+      <textarea [(ngModel)]="note.body" placeholder="note" #body="ngModel" name="body" required></textarea>
+      <button type="submit" [disabled]="!noteForm.form.valid">save</button>
+</form>
+</article>
+<app-notes [_notes]="_notes"></app-notes>

@@ -1,15 +1,4 @@
 
-:host {
-  display: flex;
-  height: calc(100vh - 6em);
-  min-height: 400px;
-  position: relative;
-  border: 0.1px solid #929fad;
-  min-height: 100vh;
-  background-color: #353d44;
-  color: #d7d9db;
-}
-
 :host nav ul:last-child {
   flex: 1;
 }
@@ -33,8 +22,8 @@
   flex-wrap: wrap;
 }
 
-nav .name,
-nav .title {
+
+.title {
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
