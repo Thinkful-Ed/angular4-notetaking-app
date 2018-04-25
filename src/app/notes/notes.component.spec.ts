@@ -23,4 +23,10 @@ describe('NotesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return am unordered list with notes', () => {
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('nav>ul').textContent).toBeTruthy();
+  });
+  }
 });

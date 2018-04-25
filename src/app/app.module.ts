@@ -8,14 +8,13 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 
 
 @NgModule({
+imports: [
+    BrowserModule,
+    FormsModule  ],
   declarations: [
     AppComponent,
     NotesComponent,
     CreateNoteComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
