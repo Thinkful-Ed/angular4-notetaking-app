@@ -30,6 +30,8 @@ export class AuthService {
       }
       error => console.log(error);
   });
+  }
+  
   public logout() {
     localStorage.removeItem('token');
   }

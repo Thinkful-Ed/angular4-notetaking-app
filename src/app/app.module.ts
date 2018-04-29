@@ -9,6 +9,7 @@ import { TagsComponent } from './tags/tags.component';
 import { FoldersComponent } from './folders/folders.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/auth.service';
+import { NoteService } from './note.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
@@ -57,7 +58,9 @@ imports: [
     FoldersComponent,
     LoginComponent,
   ],
-  providers: [ AuthService,
+  providers: [
+  NoteService,
+  AuthService,
   AuthGuard,
   HttpClient,
   HttpClientModule
