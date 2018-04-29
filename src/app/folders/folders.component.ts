@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-folders',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoldersComponent implements OnInit {
 
-  constructor() { }
+constructor(public http: HttpClient) {}
+ public ping() {
+   this.http.get('https://example.com/api/things')
+     .subscribe(
+       data => console.log(data),
+       err => console.log(err)
+     );
+ }
 
   ngOnInit() {
   }
