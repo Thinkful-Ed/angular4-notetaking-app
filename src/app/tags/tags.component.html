@@ -1,3 +1,14 @@
-<p>
-  tags works!
-</p>
+<article>
+<form #tagForm="ngForm" id="tag-edit-form" (ngSubmit)="submitForm(tagForm)">
+      <input [(ngModel)]="tag.name" placeholder="name" name="name" #title="ngModel" required/>
+      <button type="submit" [disabled]="!tagForm.form.valid">save</button>
+</form>
+</article>
+
+<nav class="tags">
+<ul>
+  <li  *ngFor="let tag of tags">
+    <span class="title">{{tag.name}}</span>
+  </li>
+</ul>
+</nav>

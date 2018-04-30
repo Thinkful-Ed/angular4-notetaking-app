@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
+import { Folder } from '../folder';
+import { FolderService } from '../_services/folder.service';
 
 
 @Component({
@@ -8,17 +9,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./folders.component.css']
 })
 export class FoldersComponent implements OnInit {
+  folder = new Folder();
+  folders: Folder[];
+  constructor(private folderService: FolderService) { }
 
-constructor(public http: HttpClient) {}
- public ping() {
-   this.http.get('https://example.com/api/things')
-     .subscribe(
-       data => console.log(data),
-       err => console.log(err)
-     );
- }
-
+  getFolders(): void {
+    this.folderService.getFolders()
+      .subscribe(folders => this.folders = folders);
+  }
   ngOnInit() {
+      this.getFolders();
+  }
+  submitted = false;
+
+  submitForm = (folderForm) => {
+    this.submitted = true;
+    console.log("here is the folder", folderForm)
+    let name = folderForm.value.name
+    this.folderService.addFolder({ name } as Folder)
+    .subscribe(folder => {
+      this.folders.push(folder);
+    });
   }
 
 }

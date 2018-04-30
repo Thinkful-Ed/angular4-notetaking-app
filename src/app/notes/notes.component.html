@@ -1,8 +1,15 @@
+<article>
+<form #noteForm="ngForm" id="note-edit-form" (ngSubmit)="submitForm(noteForm)">
+      <input [(ngModel)]="note.title" placeholder="title" name="title" #title="ngModel" required/>
+      <textarea [(ngModel)]="note.content" placeholder="content" #content="ngModel" name="content" required></textarea>
+      <button type="submit" [disabled]="!noteForm.form.valid">save</button>
+</form>
+</article>
 
 <nav class="notes">
 <ul>
   <li  *ngFor="let note of notes">
-    <span class="title">{{note.title}}</span> {{note.body}}
+    <span class="title">{{note.title}}</span> {{note.content}}
   </li>
 </ul>
 </nav>
