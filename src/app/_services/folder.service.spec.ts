@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FolderService } from './_services/note.service';
+import { FolderService } from './folder.service';
 
 describe('FolderService', () => {
   beforeEach(() => {

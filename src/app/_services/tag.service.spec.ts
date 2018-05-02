@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TagService } from './_services/note.service';
+import { TagService } from './tag.service';
 
 describe('TagService', () => {
   beforeEach(() => {

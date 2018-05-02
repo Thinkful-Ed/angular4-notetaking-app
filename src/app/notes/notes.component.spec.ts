@@ -9,7 +9,7 @@ describe('NotesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NotesComponent ],
-      schema: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));
@@ -29,4 +29,4 @@ describe('NotesComponent', () => {
       expect(compiled.querySelector('nav>ul').textContent).toBeTruthy();
   });
   }
-});
+);
