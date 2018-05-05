@@ -1,15 +1,31 @@
-<article>
+<main>
+<article class="new-note">
 <form #noteForm="ngForm" id="note-edit-form" (ngSubmit)="submitForm(noteForm)">
       <input [(ngModel)]="note.title" placeholder="title" name="title" #title="ngModel" required/>
       <textarea [(ngModel)]="note.content" placeholder="content" #content="ngModel" name="content" required></textarea>
+      <select [(ngModel)]="note.folderId" #folderId="ngModel" name="folderId">
+        <option value="">Folder</option>
+        <option *ngFor="let folder of folders"  value="{{folder.id}}">{{folder.name}}</option>
+      </select>
       <button type="submit" [disabled]="!noteForm.form.valid">save</button>
 </form>
 </article>
 
-<nav class="notes">
+<article class="notes">
 <ul>
-  <li  *ngFor="let note of notes">
+  <li *ngFor="let note of notes">
     <span class="title">{{note.title}}</span> {{note.content}}
   </li>
 </ul>
-</nav>
+</article>
+
+<article class="folders">
+  <app-folders></app-folders>
+</article>
+
+<article class="tags">
+  <app-tags></app-tags>
+</article>
+
+
+</main>

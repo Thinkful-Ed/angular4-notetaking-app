@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FoldersComponent } from './folders.component';
 
 describe('FoldersComponent', () => {
@@ -8,7 +9,9 @@ describe('FoldersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FoldersComponent ]
+      declarations: [ FoldersComponent ],
+      schema: [ NO_ERRORS_SCHEMA ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
