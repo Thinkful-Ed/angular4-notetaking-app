@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Folder } from '../folder';
 import { FolderService } from '../_services/folder.service';
 
@@ -9,14 +9,21 @@ import { FolderService } from '../_services/folder.service';
   styleUrls: ['./folders.component.css']
 })
 export class FoldersComponent implements OnInit {
+  @Output() newFolder = new EventEmitter<Folder[]>();
+
   folder = new Folder();
   folders: Folder[];
   constructor(private folderService: FolderService) { }
 
   getFolders(): void {
     this.folderService.getFolders()
-      .subscribe(folders => this.folders = folders);
+      .subscribe(folders => {
+      this.folders = folders;
+      console.log("new folders", folders)
+      this.newFolder.emit(folders);
+    });
   }
+
   ngOnInit() {
       this.getFolders();
   }

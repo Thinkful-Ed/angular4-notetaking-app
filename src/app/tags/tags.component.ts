@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tag } from '../tag';
 import { TagService } from '../_services/tag.service';
 
@@ -10,17 +10,24 @@ import { TagService } from '../_services/tag.service';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit {
+@Output() newTag = new EventEmitter<Tag[]>();
+
   tag = new Tag();
   tags: Tag[];
   constructor(private tagService: TagService) { }
 
   getTags(): void {
     this.tagService.getTags()
-      .subscribe(tags => this.tags = tags);
+    .subscribe(tags => {
+    this.tags = tags;
+    this.newTag.emit(tags);
+    });
   }
+
   ngOnInit() {
       this.getTags();
   }
+
   submitted = false;
 
   submitForm = (tagForm) => {
