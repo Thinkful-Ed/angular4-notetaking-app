@@ -50,7 +50,15 @@ export class NotesComponent implements OnInit {
       .subscribe(notes => this.notes = notes);
   }
 
-  ngOnInit(){
+  deleteNote(id, e) : void {
+    this.noteService.deleteNote(id).subscribe(() => console.log("user deleted"));
+    this.notes = this.notes.filter(function( obj ) {
+      return obj.id !== id;
+    });
+  }
+
+
+  ngOnInit() {
       this.getNotes();
       this.getFolders();
       this.getTags();

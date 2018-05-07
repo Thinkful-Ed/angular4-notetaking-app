@@ -21,6 +21,13 @@ export class NoteService {
   return this.http.post<Note>(this.notesUrl, note, httpOptions).pipe(
     tap((note: Note) => console.log(`added note w/ id=${note.id}`))
   );
+  }
+
+  deleteNote (id: number): Observable<Note> {
+  console.log("deleting", id);
+  return this.http.delete<Note>(this.notesUrl + '/' + id, httpOptions).pipe(
+    tap((note: Note) => console.log(`deleted note w/ id=${id}`))
+  );
 }
 
 

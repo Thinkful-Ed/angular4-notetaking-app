@@ -20,9 +20,9 @@
 
 <ul>
   <li *ngFor="let note of notes">
+    <button (click)="deleteNote(note.id, $event)">x</button>
     <span class="title">{{note.title}}</span> {{note.content}}
     <span class="details">Folder: {{note.folder}} </span>
-    <span class="delete"><button (click)="delete()">x</button></span>
   </li>
 </ul>
 </article>
