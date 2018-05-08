@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
 
@@ -49,12 +49,16 @@ export class AuthService {
   public register(user) {
     this.http.post('http://localhost:8080/api/users', user).subscribe(data => {
       console.log("new user! ", user.fullname)
+      if(data){
+        localStorage.setItem('token', data['authToken']);
+        console.log("token in ", localStorage.getItem('token'));
+        this.router.navigate(['/notes']);
+      }
     }, error => {
       console.log(error);
       if (error.status == 422 || error.status == 400)
         alert(error.error.message);
     });
   }
-
 
 }
