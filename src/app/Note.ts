@@ -1,7 +1,10 @@
 
 
 export class Note {
-        id : number;
-        title : string;
-        body : string;
+        id: number;
+        title: string;
+        content: string;
+        folderId: number;
+        folderName: string;
+        tags: Array<{name:string, id:string}>;
         }

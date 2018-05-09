@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@auth0/angular-jwt": "^1.1.0",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.3",
     "@types/jwt-decode": "^2.2.1",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
@@ -49,7 +51,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "typescript": "^2.6.2"
   },
   "jest": {
     "preset": "jest-preset-angular",
