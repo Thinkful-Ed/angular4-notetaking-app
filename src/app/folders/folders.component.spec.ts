@@ -2,7 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FoldersComponent } from './folders.component';
-
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FolderService } from '../_services/folder.service';
 describe('FoldersComponent', () => {
   let component: FoldersComponent;
   let fixture: ComponentFixture<FoldersComponent>;
@@ -10,8 +13,9 @@ describe('FoldersComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FoldersComponent ],
-      schema: [ NO_ERRORS_SCHEMA ],
-      imports: [ FormsModule ]
+      schemas: [ NO_ERRORS_SCHEMA ],
+      imports: [ FormsModule, HttpClientTestingModule ],
+      providers: [ FolderService ]
     })
     .compileComponents();
   }));

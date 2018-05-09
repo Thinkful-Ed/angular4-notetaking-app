@@ -19,7 +19,12 @@ export class NoteService {
 
   addNote (note: Note): Observable<Note> {
   return this.http.post<Note>(this.notesUrl, note, httpOptions).pipe(
-    tap((note: Note) => console.log(`added note w/ id=${note.id}`))
+    tap((note: Note) => console.log(`added note w/ id=${note.id}`),
+        error => {
+          if (error.status == 400)
+            alert(error.error.message)
+        }  
+    )
   );
   }
 

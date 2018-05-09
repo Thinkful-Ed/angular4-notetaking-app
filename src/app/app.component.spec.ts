@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NotesComponent } from './notes/notes.component';
-import { CreateNoteComponent } from './create-note/create-note.component';
+// import { CreateNoteComponent } from './create-note/create-note.component';
 
 
 describe('AppComponent', () => {
@@ -12,9 +12,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         NotesComponent,
-        CreateNoteComponent
+        // CreateNoteComponent
       ],
-      schema: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       imports: [ FormsModule ]
     }).compileComponents();
   }));

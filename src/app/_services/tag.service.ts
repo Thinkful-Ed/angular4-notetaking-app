@@ -19,7 +19,12 @@ export class TagService {
 
   addTag (tag: Tag): Observable<Tag> {
   return this.http.post<Tag>(this.tagUrl, tag, httpOptions).pipe(
-    tap((tag: Tag) => console.log(`added tag w/ id=${tag}`))
+    tap((tag: Tag) => console.log(`added tag w/ id=${tag}`),
+        error => {
+          if (error.status == 400)
+            alert(error.error.message)
+        }
+      )
   );
 }
 

@@ -19,7 +19,14 @@ export class FolderService {
 
   addFolder (folder: Folder): Observable<Folder> {
   return this.http.post<Folder>(this.folderUrl, folder, httpOptions).pipe(
-    tap((folder: Folder) => console.log(`added folder w/ id=${folder}`))
+    tap(
+      (folder: Folder) => console.log(`added folder w/ id=${folder}`),
+      error => {
+        if (error.status == 400) {
+          alert(error.error.message)
+        }
+      }
+    )
   );
 }
 
