@@ -1,0 +1,15 @@
+<h1>Welcome to app!</h1>
+<form #login="ngForm" (ngSubmit)="onLogin(login)">
+     <input type="text" placeholder="username" [(ngModel)]="credentials.username" #username="ngModel" name="username" ngControl="username" id="username1">
+     <input type="password" placeholder="password" [(ngModel)]="credentials.password" #password="ngModel" name="password" ngControl="password" id="password1">
+     <button type="submit" id="submit1">Submit</button>
+</form>
+
+<button (click)="this.onLogout()">Logout</button>
+
+<form #register="ngForm" (ngSubmit)="onRegister(register)">
+     <input type="text" placeholder="username" [(ngModel)]="user.username" #username="ngModel" name="username" ngControl="username" id="username2">
+     <input type="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel" name="password" ngControl="password" id="password2">
+     <input type="text" placeholder="fullname" [(ngModel)]="user.fullname" #fullname="ngModel" name="fullname" ngControl="fullname" id="fullname2">
+     <button type="submit" id="submit2">Submit</button>
+</form>

@@ -1,0 +1,49 @@
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  display: block;
+}
+
+textarea {
+  display: block;
+}
+select {
+  display: block;
+}
+
+article {
+  padding: 10px;
+}
+
+.new-note {
+  order: 0;
+}
+
+.notes {
+  width: 40%;
+  order: 1;
+}
+
+.notes li {
+  border: 1px solid gray;
+}
+
+span.details {
+  font-size: 8pt;
+}
+
+button {
+  display: inline;
+  float: right;
+}
+
+.folders {
+  order: 2;
+}
+
+.tags {
+  order: 3;
+}

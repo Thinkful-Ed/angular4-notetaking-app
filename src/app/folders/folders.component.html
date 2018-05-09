@@ -1,0 +1,15 @@
+<article>
+<h3>Add New Folder</h3>
+<form #folderForm="ngForm" id="folder-edit-form" (ngSubmit)="submitForm(folderForm)">
+      <input [(ngModel)]="folder.name" placeholder="name" name="name" #title="ngModel" required/>
+      <button type="submit" [disabled]="!folderForm.form.valid">save</button>
+</form>
+</article>
+
+<nav class="folders">
+<ul>
+  <li  *ngFor="let folder of folders">
+    <span class="title">{{folder.name}}</span>
+  </li>
+</ul>
+</nav>
