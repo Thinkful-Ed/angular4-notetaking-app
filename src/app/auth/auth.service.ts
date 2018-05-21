@@ -22,8 +22,10 @@ export class AuthService {
  }
 
   public login(credentials) {
-    this.http.post(' https://notefulapp.herokuapp.com/api/login', credentials).subscribe(data => {
-      console.log(data);
+  console.log("login attempt", credentials);
+
+    this.http.post('https://notefulapp.herokuapp.com/api/login', credentials).subscribe(data => {
+      console.log("login attempt", data);
       if(data){
       localStorage.setItem('token', data['authToken']);
       console.log("token in ", localStorage.getItem('token'));

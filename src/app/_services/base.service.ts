@@ -8,6 +8,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class BaseService {
-  baseUrl = "https://notefulapp.herokuapp.com/api/";
+  baseUrl = "https://notefulapp.herokuapp.com/api";
 
 }
