@@ -11,6 +11,7 @@ import { AuthService } from './auth/auth.service';
 import { NoteService } from './_services/note.service';
 import { TagService } from './_services/tag.service';
 import { FolderService } from './_services/folder.service';
+import { BaseService } from './_services/base.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
@@ -48,7 +49,7 @@ imports: [
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:3001', 'localhost:8080'],
+        whitelistedDomains: ['localhost:3001', 'localhost:8080',  'https://notefulapp.herokuapp.com/'],
         blacklistedRoutes: ['localhost:3001/auth/']
       }
     })
@@ -63,6 +64,7 @@ imports: [
   providers: [
   NoteService,
   TagService,
+  BaseService,
   FolderService,
   AuthService,
   AuthGuard,

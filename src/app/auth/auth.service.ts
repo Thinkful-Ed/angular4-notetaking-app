@@ -22,7 +22,7 @@ export class AuthService {
  }
 
   public login(credentials) {
-    this.http.post('http://localhost:8080/api/login', credentials).subscribe(data => {
+    this.http.post(' https://notefulapp.herokuapp.com/api/login', credentials).subscribe(data => {
       console.log(data);
       if(data){
       localStorage.setItem('token', data['authToken']);
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   public register(user) {
-    this.http.post('http://localhost:8080/api/users', user).subscribe(data => {
+    this.http.post(' https://notefulapp.herokuapp.com/api/users', user).subscribe(data => {
       console.log("new user! ", user.fullname)
       if(data){
         localStorage.setItem('token', data['authToken']);
