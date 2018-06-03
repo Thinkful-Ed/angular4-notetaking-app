@@ -1,6 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Note } from "../models";
-import { NOTES } from '../mock-data';
 
 @Component({
   selector: "app-notes",
@@ -8,8 +7,7 @@ import { NOTES } from '../mock-data';
   styleUrls: ["./notes.component.css"]
 })
 export class NotesComponent implements OnInit {
-
-  _notes = NOTES;
+  @Input() _notes;
 
   constructor() {}
 
