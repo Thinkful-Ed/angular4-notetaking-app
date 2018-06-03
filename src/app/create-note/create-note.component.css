@@ -1,0 +1,46 @@
+#note-edit-form {
+  /* 1 portions (the rest) */
+  flex: 1;
+}
+
+/* Define Edit Form as flex COLUMN */
+
+#note-edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#note-edit-form input,
+#note-edit-form textarea,
+#note-edit-form select,
+#note-edit-form button {
+  margin: 0.5em;
+}
+
+#note-edit-form input,
+#note-edit-form textarea,
+#note-edit-form select {
+  padding: 0.5em;
+}
+
+#note-edit-form select,
+#note-edit-form button {
+  width: fit-content;
+}
+/* article header gets default height and width */
+
+/* article form gets 1 portion, effectively the rest of the column */
+
+#note-edit-form textarea {
+  /* 1 portions (the rest) */
+  flex: 1;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
