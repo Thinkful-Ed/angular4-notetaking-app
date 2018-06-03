@@ -1,5 +1,8 @@
 
-<h2>{{ note.title }}</h2>
-<div><span>id: </span>{{note.id}}</div>
-<div><span>date: </span>{{note.date}}</div>
-<div><span>contents: </span>{{note.body}}</div>
+<nav class="notes">
+<ul>
+  <li  *ngFor="let note of _notes">
+    <span class="title">{{note.title}}</span> {{note.content}}
+  </li>
+</ul>
+</nav>
