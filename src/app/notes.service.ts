@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { NOTES } from "./mock-data";
 import { Note } from "./models";
+import { BaseService } from "./base.service";
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,10 +14,10 @@ const httpOptions = {
 
 @Injectable()
 export class NotesService {
+  constructor(private http: HttpClient, private baseService: BaseService) {  }
 
-  notesUrl = "http://localhost:8080/api/notes";
+  notesUrl = this.baseService.baseUrl + "/notes";
 
-  constructor(private http: HttpClient) {  }
 
   getNotes():  Observable<Note[]>  {
       return this.http.get<Note[]>(this.notesUrl);
