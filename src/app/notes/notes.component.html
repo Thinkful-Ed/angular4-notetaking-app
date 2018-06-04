@@ -1,8 +1,13 @@
+<article class="notes">
 
-<nav class="notes">
+<h1>Notes</h1>
+
 <ul>
-  <li  *ngFor="let note of _notes">
+  <li *ngFor="let note of notes">
+    <button (click)="deleteNote(note.id, $event)">x</button>
     <span class="title">{{note.title}}</span> {{note.content}}
+    <span class="details">Folder: {{note.folder}} </span>
   </li>
 </ul>
-</nav>
+
+</article>

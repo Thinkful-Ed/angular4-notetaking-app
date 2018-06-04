@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Note } from "../models";
 import { NOTES } from '../mock-data';
+import { NotesService } from '../notes.service';
 
 
 @Component({
@@ -10,23 +11,25 @@ import { NOTES } from '../mock-data';
   styleUrls: ["./create-note.component.css"]
 })
 export class CreateNoteComponent implements OnInit {
-  constructor() {}
+constructor(private notesService: NotesService) { }
 
   note = new Note();
   submitted = false;
   _notes = NOTES;
 
-  submitForm = form => {
+
+submitForm = (noteForm) => {
     this.submitted = true;
-    console.log(form.value.body);
-    let update_notes = this._notes;
-    update_notes.push({
-      id: 0,
-      title: form.value.title,
-      content: form.value.content
+    console.log("here is the note", noteForm)
+    let title = noteForm.value.title,
+      content = noteForm.value.content,
+      folderId = noteForm.value.folderId;
+    this.notesService.addNote({ title, content } as Note)
+    .subscribe(note => {
+      this.note = new Note();
+      this._notes.push(note);
     });
-    this._notes = update_notes;
-  };
+  }
 
   ngOnInit() {}
 }

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 
 import { NotesService } from './notes.service';
 
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
      appRoutes,
      { enableTracing: true } // <-- debugging purposes only
     ),
+    HttpClientModule
   ],
   providers: [ NotesService ],
   bootstrap: [AppComponent]

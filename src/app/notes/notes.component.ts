@@ -12,10 +12,11 @@ export class NotesComponent implements OnInit {
 
   constructor(private notesService: NotesService) { }
 
-
-  getNotes(): void {
-    this._notes = this.notesService.getNotes();
-  }
-
+   deleteNote(id, e) : void {
+      this.notesService.deleteNote(id).subscribe(() => console.log("Note deleted"));
+      this._notes = this._notes.filter(function( obj ) {
+        return obj.id !== id;
+      });
+    }
   ngOnInit() {}
 }
