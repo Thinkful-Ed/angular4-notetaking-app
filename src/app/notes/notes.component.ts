@@ -5,6 +5,8 @@ import { FolderService } from '../_services/folder.service';
 import { TagService } from '../_services/tag.service';
 import { Folder } from '../folder';
 import { Tag } from '../tag';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes',
@@ -14,6 +16,8 @@ import { Tag } from '../tag';
 export class NotesComponent implements OnInit {
 
   constructor(private noteService: NoteService,
+    public auth: AuthService,
+    public router: Router,
     private folderService: FolderService,
     private tagService: TagService) { }
 
@@ -119,4 +123,8 @@ export class NotesComponent implements OnInit {
     this.note = new Note();
   }
 
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 }
