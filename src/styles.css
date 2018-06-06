@@ -18,7 +18,6 @@ body {
 nav,
 footer {
   padding: 1% 0;
-  background-color: #aaa;
 }
 
 nav {
@@ -26,6 +25,10 @@ nav {
   left: 0;
   right: 0;
   z-index: 10;
+}
+
+nav ul{
+  padding-left: 0px;
 }
 
 header {
@@ -49,4 +52,16 @@ ul {
 li > span {
   display: block;
   font-weight: bold;
+}
+
+.folders ul li, .tags ul li {
+  background-color: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.folders li button, .tags li button {
+  float: right;
+  border: 0;
+  background: none;
 }
