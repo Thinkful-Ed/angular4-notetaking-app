@@ -85,6 +85,13 @@ export class NotesComponent implements OnInit {
     }
   }
 
+  updateNote(note) {
+    this.note = {
+      ...note,
+      tags: note.tags.map(t => t.id)
+    };
+  }
+
 
   submitForm(noteForm) {
     this.submitted = true;
@@ -93,11 +100,19 @@ export class NotesComponent implements OnInit {
       content = noteForm.value.content,
       folderId = noteForm.value.folderId,
       tagsNote = noteForm.value.tags;
-    this.noteService.addNote({ title, content, folderId, tags: tagsNote } as Note)
-      .subscribe(note => {
-        this.note = new Note();
-        this.notes.push(note);
-      });
+
+    let method;
+
+    if (this.note.id) {
+      method = this.noteService.updateNote({ title, content, folderId, tags: tagsNote, id: this.note.id } as Note);
+    } else {
+      method = this.noteService.addNote({ title, content, folderId, tags: tagsNote } as Note);
+    }
+
+    method.subscribe(note => {
+      this.note = new Note();
+      this.getNotes();
+    });
   }
 
 }

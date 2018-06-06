@@ -11,6 +11,7 @@
       <select multiple [(ngModel)]="note.tags" #tagsNote="ngModel" name="tags" *ngIf="tags">
         <option *ngFor="let tag of tags" value="{{tag.id}}">{{tag.name}}</option>
       </select>
+      <button type="button" [disabled]="!noteForm.form.valid" *ngIf="note && note.id" (click)="note={}">cancel</button>
       <button type="submit" [disabled]="!noteForm.form.valid">save</button>
     </form>
   </article>
@@ -27,6 +28,7 @@
             <li *ngFor="let tag of note.tags">{{tag.name}}</li>
           </ul>
         </span>
+        <button (click)="updateNote(note)">update</button>
       </li>
     </ul>
   </article>

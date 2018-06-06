@@ -28,6 +28,19 @@ export class NoteService {
     );
   }
 
+  updateNote(note: Note): Observable<Note> {
+    const httpOptions = this.baseService.getAuthHttpHeaders();
+    return this.http.put<Note>(this.baseService.baseUrl + this.notesUrl + `/${note.id}`, note, httpOptions).pipe(
+      tap((newNote: Note) => console.log(`added updated w/ id=${newNote.id}`),
+        error => {
+          if (error.status === 400) {
+            alert(error.error.message);
+          }
+        }
+      )
+    );
+  }
+
   deleteNote(id: number): Observable<Note> {
     console.log('deleting', id);
     const httpOptions = this.baseService.getAuthHttpHeaders();
