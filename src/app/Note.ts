@@ -4,5 +4,5 @@ export class Note {
         content: string;
         folderId: number;
         folderName: string;
-        tags: Array<{name:string, id:string}>;
-        }
+        tags: Array<{ name: string, id: string }>;
+}

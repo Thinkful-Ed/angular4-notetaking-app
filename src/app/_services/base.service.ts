@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Folder } from '../folder';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class BaseService {
-  baseUrl = 'https://notefulapp.herokuapp.com/api';
+  baseUrl = environment.baseUrl;
   baseOptions = { 'Content-Type': 'application/json' };
 
   getHttpHeaders(headers = {}) {

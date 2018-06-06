@@ -28,5 +28,17 @@ export class TagService {
     );
   }
 
+  deleteTag(id: String): Observable<Tag> {
+    const httpOptions = this.baseService.getAuthHttpHeaders();
+    return this.http.delete<Tag>(this.baseService.baseUrl + this.tagUrl + `/${id}`, httpOptions).pipe(
+      tap((newTag: Tag) => console.log(`added tag w/ id=${newTag}`),
+        error => {
+          if (error.status === 400) {
+            alert(error.error.message);
+          }
+        }
+      )
+    );
+  }
 
 }

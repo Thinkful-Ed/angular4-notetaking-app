@@ -1,15 +1,17 @@
 <article>
-<h3>Add New Tag</h3>
-<form #tagForm="ngForm" id="tag-edit-form" (ngSubmit)="submitForm(tagForm)">
-      <input [(ngModel)]="tag.name" placeholder="name" name="name" #title="ngModel" required/>
-      <button type="submit" [disabled]="!tagForm.form.valid">save</button>
-</form>
+  <h3>Add New Tag</h3>
+  <form #tagForm="ngForm" id="tag-edit-form" (ngSubmit)="submitForm(tagForm)">
+    <input [(ngModel)]="tag.name" placeholder="name" name="name" #title="ngModel" required/>
+    <button type="submit" [disabled]="!tagForm.form.valid">save</button>
+  </form>
 </article>
 
 <nav class="tags">
-<ul>
-  <li  *ngFor="let tag of tags">
-    <span class="title">{{tag.name}}</span>
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let tag of tags">
+      <span class="title">{{tag.name}}
+        <button (click)="deleteTag(tag)">remove</button>
+      </span>
+    </li>
+  </ul>
 </nav>

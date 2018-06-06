@@ -8,7 +8,7 @@
         <option value="" selected="">Folder</option>
         <option *ngFor="let folder of folders"  value="{{folder.id}}">{{folder.name}}</option>
       </select>
-      <select multiple [(ngModel)]="note.tags" #folderId="ngModel" name="tags">
+      <select multiple [(ngModel)]="note.tags" #tagsNote="ngModel" name="tags" *ngIf="tags">
           <option *ngFor="let tag of tags"  value="{{tag.id}}">{{tag.name}}</option>
       </select>
       <button type="submit" [disabled]="!noteForm.form.valid">save</button>
@@ -23,6 +23,7 @@
     <button (click)="deleteNote(note.id, $event)">x</button>
     <span class="title">{{note.title}}</span> {{note.content}}
     <span class="details">Folder: {{note.folder}} </span>
+    <span class="details">Tags: {{note.folder}} </span>
   </li>
 </ul>
 </article>

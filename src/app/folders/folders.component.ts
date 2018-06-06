@@ -13,30 +13,40 @@ export class FoldersComponent implements OnInit {
 
   folder = new Folder();
   folders: Folder[];
+  submitted = false;
+
   constructor(private folderService: FolderService) { }
+
+  ngOnInit() {
+    this.getFolders();
+  }
 
   getFolders(): void {
     this.folderService.getFolders()
       .subscribe(folders => {
-      this.folders = folders;
-      console.log("new folders", folders)
-      this.newFolder.emit(folders);
-    });
+        this.folders = folders;
+        console.log('new folders', folders);
+        this.newFolder.emit(folders);
+      });
   }
 
-  ngOnInit() {
-      this.getFolders();
-  }
-  submitted = false;
-
-  submitForm = (folderForm) => {
+  submitForm(folderForm) {
     this.submitted = true;
-    console.log("here is the folder", folderForm)
-    let name = folderForm.value.name
+    console.log('here is the folder', folderForm);
+    const name = folderForm.value.name;
     this.folderService.addFolder({ name } as Folder)
-    .subscribe(folder => {
-      this.folders.push(folder);
-    });
+      .subscribe(folder => {
+        this.folders.push(folder);
+        folderForm.reset();
+      });
   }
 
+  deleteFolder(folder) {
+    if (confirm(`Are you sure want to remoe this folder`)) {
+      this.folderService.deleteFolder(folder.id)
+        .subscribe(deleteFolder => {
+          this.ngOnInit();
+        });
+    }
+  }
 }

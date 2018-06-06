@@ -13,71 +13,79 @@ import { Tag } from '../tag';
 })
 export class NotesComponent implements OnInit {
 
-  constructor(private noteService: NoteService, private folderService: FolderService, private tagService: TagService) { }
+  constructor(private noteService: NoteService,
+    private folderService: FolderService,
+    private tagService: TagService) { }
 
-  //Get and serve folder dropdown
+  // Get and serve folder dropdown
   folder = new Folder();
   folders: Folder[];
+
+  // Get and serve tags dropdown
+  tag = new Tag();
+  tags: Tag[];
+
+  note = new Note();
+  notes: Note[];
+
+  submitted = false;
+
+  // FOLDERS
 
   getFolders(): void {
     this.folderService.getFolders()
       .subscribe(folders => this.folders = folders);
   }
 
-  newFolder(folders: Folder[]){
+  newFolder(folders: Folder[]) {
     this.folders = folders;
   }
 
 
-  //Get and serve tags dropdown
-  tag = new Tag();
-  tags: Tag[];
+  // TAGS
 
   getTags(): void {
     this.tagService.getTags()
       .subscribe(tags => this.tags = tags);
   }
 
-  newTag(tags: Tag[]){
+  newTag(tags: Tag[]) {
     this.tags = tags;
   }
 
-  note = new Note();
-  notes: Note[];
+  // NOTES
 
   getNotes(): void {
     this.noteService.getNotes()
       .subscribe(notes => this.notes = notes);
   }
 
-  deleteNote(id, e) : void {
-    this.noteService.deleteNote(id).subscribe(() => console.log("user deleted"));
-    this.notes = this.notes.filter(function( obj ) {
+  deleteNote(id, e): void {
+    this.noteService.deleteNote(id).subscribe(() => console.log('user deleted'));
+    this.notes = this.notes.filter(function (obj) {
       return obj.id !== id;
     });
   }
 
 
   ngOnInit() {
-      this.getNotes();
-      this.getFolders();
-      this.getTags();
+    this.getNotes();
+    this.getFolders();
+    this.getTags();
   }
 
-  submitted = false;
-
-  submitForm = (noteForm) => {
+  submitForm(noteForm) {
     this.submitted = true;
-    console.log("here is the note", noteForm)
-    let title = noteForm.value.title,
+    console.log('here is the note', noteForm);
+    const title = noteForm.value.title,
       content = noteForm.value.content,
-      folderId = noteForm.value.folderId;
-    this.noteService.addNote({ title, content, folderId } as Note)
-    .subscribe(note => {
-      this.note = new Note();
-      this.notes.push(note);
-    });
+      folderId = noteForm.value.folderId,
+      tagsNote = noteForm.value.tags;
+    this.noteService.addNote({ title, content, folderId, tags: tagsNote } as Note)
+      .subscribe(note => {
+        this.note = new Note();
+        this.notes.push(note);
+      });
   }
-
 
 }

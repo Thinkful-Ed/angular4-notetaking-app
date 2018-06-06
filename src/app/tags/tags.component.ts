@@ -10,35 +10,43 @@ import { TagService } from '../_services/tag.service';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit {
-@Output() newTag = new EventEmitter<Tag[]>();
+  @Output() newTag = new EventEmitter<Tag[]>();
 
   tag = new Tag();
   tags: Tag[];
+  submitted = false;
+
   constructor(private tagService: TagService) { }
+
+  ngOnInit() {
+    this.getTags();
+  }
 
   getTags(): void {
     this.tagService.getTags()
-    .subscribe(tags => {
-    this.tags = tags;
-    this.newTag.emit(tags);
-    });
+      .subscribe(tags => {
+        this.tags = tags;
+        this.newTag.emit(tags);
+      });
   }
 
-  ngOnInit() {
-      this.getTags();
-  }
-
-  submitted = false;
-
-  submitForm = (tagForm) => {
+  submitForm(tagForm) {
     this.submitted = true;
-    console.log("here is the tag", tagForm)
-    let name = tagForm.value.name
+    console.log('here is the tag', tagForm);
+    const name = tagForm.value.name;
     this.tagService.addTag({ name } as Tag)
-    .subscribe(tag => {
-      this.tags.push(tag);
-    });
+      .subscribe(tag => {
+        this.tags.push(tag);
+        tagForm.reset();
+      });
   }
 
-
+  deleteTag(tag) {
+    if (confirm(`Are you sure want to remoe this tag`)) {
+      this.tagService.deleteTag(tag.id)
+        .subscribe(deleteTag => {
+          this.ngOnInit();
+        });
+    }
+  }
 }
