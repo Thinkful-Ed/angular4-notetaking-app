@@ -1,40 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../note';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class NoteService {
-  notesUrl = "/notes";
-  constructor(private http: HttpClient, private baseService: BaseService) {  }
+  notesUrl = '/notes';
+  constructor(private http: HttpClient, private baseService: BaseService) { }
 
-  getNotes():  Observable<Note[]>  {
-    return this.http.get<Note[]>(this.baseService.baseUrl + this.notesUrl);
+  getNotes(): Observable<Note[]> {
+    const httpOptions = this.baseService.getAuthHttpHeaders();
+    return this.http.get<Note[]>(this.baseService.baseUrl + this.notesUrl, httpOptions);
   }
 
-  addNote (note: Note): Observable<Note> {
-  return this.http.post<Note>(this.baseService.baseUrl + this.notesUrl, note, httpOptions).pipe(
-    tap((note: Note) => console.log(`added note w/ id=${note.id}`),
+  addNote(note: Note): Observable<Note> {
+    const httpOptions = this.baseService.getAuthHttpHeaders();
+    return this.http.post<Note>(this.baseService.baseUrl + this.notesUrl, note, httpOptions).pipe(
+      tap((newNote: Note) => console.log(`added note w/ id=${newNote.id}`),
         error => {
-          if (error.status == 400)
-            alert(error.error.message)
+          if (error.status === 400) {
+            alert(error.error.message);
+          }
         }
-    )
-  );
+      )
+    );
   }
 
-  deleteNote (id: number): Observable<Note> {
-  console.log("deleting", id);
-  return this.http.delete<Note>(this.baseService.baseUrl + this.notesUrl + '/' + id, httpOptions).pipe(
-    tap((note: Note) => console.log(`deleted note w/ id=${id}`))
-  );
-}
+  deleteNote(id: number): Observable<Note> {
+    console.log('deleting', id);
+    const httpOptions = this.baseService.getAuthHttpHeaders();
+    return this.http.delete<Note>(this.baseService.baseUrl + this.notesUrl + '/' + id, httpOptions).pipe(
+      tap((deltedNote: Note) => console.log(`deleted note w/ id=${id}`))
+    );
+  }
 
 
 }
