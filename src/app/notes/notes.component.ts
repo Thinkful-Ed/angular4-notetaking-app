@@ -115,4 +115,8 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  cancelUpdate() {
+    this.note = new Note();
+  }
+
 }
