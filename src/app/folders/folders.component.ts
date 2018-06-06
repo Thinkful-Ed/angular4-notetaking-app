@@ -36,7 +36,7 @@ export class FoldersComponent implements OnInit {
     const name = folderForm.value.name;
     this.folderService.addFolder({ name } as Folder)
       .subscribe(folder => {
-        this.folders.push(folder);
+        this.getFolders();
         folderForm.reset();
       });
   }
@@ -45,7 +45,7 @@ export class FoldersComponent implements OnInit {
     if (confirm(`Are you sure want to remoe this folder`)) {
       this.folderService.deleteFolder(folder.id)
         .subscribe(deleteFolder => {
-          this.ngOnInit();
+          this.getFolders();
         });
     }
   }

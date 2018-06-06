@@ -30,23 +30,39 @@ export class NotesComponent implements OnInit {
 
   submitted = false;
 
+  ngOnInit() {
+    this.getFolders();
+  }
+
   // FOLDERS
 
-  getFolders(): void {
-    this.folderService.getFolders()
-      .subscribe(folders => this.folders = folders);
+  getFolders() {
+    return this.folderService.getFolders()
+      .subscribe(folders => this.folders = folders, (err) => console.log(err), () => this.getTags());
   }
 
   newFolder(folders: Folder[]) {
     this.folders = folders;
   }
 
+  getFolder(folder) {
+    if (typeof folder === 'string') {
+      const found = this.folders.find(f => f.id === folder);
+      if (found) {
+        return found.name;
+      }
+    } else if (typeof folder === 'object') {
+      return folder.name;
+    }
+    return folder;
+  }
+
 
   // TAGS
 
-  getTags(): void {
-    this.tagService.getTags()
-      .subscribe(tags => this.tags = tags);
+  getTags() {
+    return this.tagService.getTags()
+      .subscribe(tags => this.tags = tags, (err) => console.log(err), () => this.getNotes());
   }
 
   newTag(tags: Tag[]) {
@@ -61,18 +77,14 @@ export class NotesComponent implements OnInit {
   }
 
   deleteNote(id, e): void {
-    this.noteService.deleteNote(id).subscribe(() => console.log('user deleted'));
-    this.notes = this.notes.filter(function (obj) {
-      return obj.id !== id;
-    });
+    if (confirm('Are you sure want to delete this note?')) {
+      this.noteService.deleteNote(id).subscribe(() => console.log('user deleted'));
+      this.notes = this.notes.filter(function (obj) {
+        return obj.id !== id;
+      });
+    }
   }
 
-
-  ngOnInit() {
-    this.getNotes();
-    this.getFolders();
-    this.getTags();
-  }
 
   submitForm(noteForm) {
     this.submitted = true;

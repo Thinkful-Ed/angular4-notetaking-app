@@ -36,7 +36,7 @@ export class TagsComponent implements OnInit {
     const name = tagForm.value.name;
     this.tagService.addTag({ name } as Tag)
       .subscribe(tag => {
-        this.tags.push(tag);
+        this.getTags();
         tagForm.reset();
       });
   }
@@ -45,7 +45,7 @@ export class TagsComponent implements OnInit {
     if (confirm(`Are you sure want to remoe this tag`)) {
       this.tagService.deleteTag(tag.id)
         .subscribe(deleteTag => {
-          this.ngOnInit();
+          this.getTags();
         });
     }
   }
