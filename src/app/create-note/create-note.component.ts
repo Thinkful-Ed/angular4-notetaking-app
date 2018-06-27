@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Note } from "../models";
+import { NOTES } from "../mock-data";
 
 
 @Component({
@@ -13,19 +14,20 @@ export class CreateNoteComponent implements OnInit {
 
   note = new Note();
   submitted = false;
-  _notes : Note[];
+  _notes: Note[] = NOTES;
 
   submitForm = form => {
     this.submitted = true;
-    console.log(form.value.body);
-    let update_notes = this._notes;
+    console.log(form.value);
+    const update_notes = this._notes;
     update_notes.push({
       id: 0,
       title: form.value.title,
-      content: form.value.body
+      content: form.value.content
     });
     this._notes = update_notes;
-  };
+    console.log(this._notes);
+  }
 
   ngOnInit() {}
 }
