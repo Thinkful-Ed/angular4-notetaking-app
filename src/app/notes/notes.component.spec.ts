@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { NotesComponent } from "./notes.component";
-import { NoteService } from '../note.service';
+import { NotesService } from '../notes.service';
 
 describe("NotesComponent", () => {
   let component: NotesComponent;
@@ -12,7 +12,7 @@ describe("NotesComponent", () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [NotesComponent, NoteService],
+        declarations: [NotesComponent, NotesService],
         schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
     })
@@ -33,7 +33,7 @@ describe("NotesComponent", () => {
     expect(compiled.querySelector("ul").nodeName).toEqual("UL");
   });
 
-it('should get notes', inject([NoteService], (service: NoteService, httpMock: HttpTestingController) => {
+it('should get notes', inject([NotesService], (service: NotesService, httpMock: HttpTestingController) => {
     const response: Note[] = [
       { id : 1,
         title : 'string',
