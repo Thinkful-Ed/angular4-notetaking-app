@@ -24,10 +24,11 @@
 .notes li  {
   border: 1px solid gray;
   padding: 20px;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .title {
+  font-weight: 900;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;

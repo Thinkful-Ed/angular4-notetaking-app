@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Note } from "../models";
 import { NOTES } from '../mock-data';
 
 @Component({
