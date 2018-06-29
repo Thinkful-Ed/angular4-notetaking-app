@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
-  NotesService, 
+  NotesService,
   BaseService ],
   bootstrap: [AppComponent]
 })

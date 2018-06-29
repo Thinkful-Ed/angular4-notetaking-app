@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 import { CreateNoteComponent } from "./create-note.component";
+import { BaseService } from "../base.service";
+import { NotesService } from "../notes.service";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("CreateNoteComponent", () => {
   let component: CreateNoteComponent;
@@ -13,7 +16,8 @@ describe("CreateNoteComponent", () => {
       TestBed.configureTestingModule({
         declarations: [CreateNoteComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        imports: [ FormsModule ]
+        providers: [BaseService, NotesService],
+        imports: [ HttpClientTestingModule, FormsModule ]
       }).compileComponents();
     })
   );
