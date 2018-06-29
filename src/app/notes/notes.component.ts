@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Note } from "../models";
 import { NotesService } from '../notes.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class NotesComponent implements OnInit {
 
   constructor(private notesService: NotesService) { }
 
-   deleteNote(id, e) : void {
+   deleteNote(id, e): void {
       this.notesService.deleteNote(id).subscribe(() => console.log("Note deleted"));
       this._notes = this._notes.filter(function( obj ) {
         return obj.id !== id;
