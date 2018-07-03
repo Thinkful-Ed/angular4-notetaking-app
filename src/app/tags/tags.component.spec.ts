@@ -4,6 +4,7 @@ import { TagsComponent } from './tags.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TagService } from '../_services/tag.service';
+import { BaseService } from '../_services/base.service';
 describe('TagsComponent', () => {
   let component: TagsComponent;
   let fixture: ComponentFixture<TagsComponent>;
@@ -13,7 +14,7 @@ describe('TagsComponent', () => {
       declarations: [ TagsComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [ FormsModule, HttpClientTestingModule ],
-      providers: [TagService]
+      providers: [BaseService, TagService]
     })
     .compileComponents();
   }));

@@ -4,21 +4,26 @@ import { NoteService } from './note.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../note';
-import { of } from 'rxjs/observable/of';
+import { BaseService } from './base.service';
 describe('NoteService', () => {
+  let httpMock;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NoteService, HttpClient],
+      providers: [BaseService, NoteService, HttpClient],
       imports: [ HttpClientTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
     });
+  });
+
+  beforeEach(() => {
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('should be created', inject([NoteService], (service: NoteService) => {
     expect(service).toBeTruthy();
   }));
 
-  it('should get notes', inject([NoteService, HttpTestingController, HttpClient], (service: NoteService, httpMock: HttpTestingController) => {
+  it('should get notes', inject([NoteService, HttpTestingController, HttpClient], (service: NoteService) => {
     const response: Note[] = [
       { id : 1,
         title : 'string',

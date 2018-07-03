@@ -49,7 +49,7 @@ imports: [
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:3001', 'localhost:8080',  'https://notefulapp.herokuapp.com/'],
+        whitelistedDomains: ['localhost:3001', 'localhost:8080',  'notefulapp.herokuapp.com/'],
         blacklistedRoutes: ['localhost:3001/auth/']
       }
     })

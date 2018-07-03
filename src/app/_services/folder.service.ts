@@ -12,12 +12,12 @@ export class FolderService {
     private baseService: BaseService) { }
 
   getFolders(): Observable<Folder[]> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.get<Folder[]>(this.baseService.baseUrl + this.folderUrl, httpOptions);
   }
 
   addFolder(folder: Folder): Observable<Folder> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.post<Folder>(this.baseService.baseUrl + this.folderUrl, folder, httpOptions).pipe(
       tap(
         (newFolder: Folder) => console.log(`added folder w/ id=${newFolder}`),
@@ -31,7 +31,7 @@ export class FolderService {
   }
 
   deleteFolder(id: String): Observable<Folder> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.delete<Folder>(this.baseService.baseUrl + this.folderUrl + `/${id}`, httpOptions)
       .pipe(
         tap((newFolder: Folder) => console.log(`added folder w/ id=${newFolder}`),

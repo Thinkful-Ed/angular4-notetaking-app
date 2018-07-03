@@ -4,11 +4,12 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { FolderService } from './folder.service';
+import { BaseService } from './base.service';
 
 describe('FolderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FolderService],
+      providers: [BaseService, FolderService],
       imports: [ HttpClientTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
     });

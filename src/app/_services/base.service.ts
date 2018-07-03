@@ -16,8 +16,4 @@ export class BaseService {
     return httpOptions;
   }
 
-  getAuthHttpHeaders() {
-    return this.getHttpHeaders({ 'Authorization': 'Bearer ' + localStorage.token });
-  }
-
 }

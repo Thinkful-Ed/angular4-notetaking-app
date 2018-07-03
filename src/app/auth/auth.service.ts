@@ -16,8 +16,8 @@ export class AuthService {
     private baseService: BaseService) { }
 
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    return !this.helper.isTokenExpired(token);
+    const token = window.localStorage.getItem('token');
+    return token && !this.helper.isTokenExpired(token);
   }
 
   public login(credentials) {
@@ -26,8 +26,8 @@ export class AuthService {
     this.http.post(this.baseService.baseUrl + '/login', credentials).subscribe(data => {
       console.log('login attempt', data);
       if (data) {
-        localStorage.setItem('token', data['authToken']);
-        console.log('token in ', localStorage.getItem('token'));
+        window.localStorage.setItem('token', data['authToken']);
+        console.log('token in ', window.localStorage.getItem('token'));
         this.router.navigate(['/notes']);
       }
     }, error => {
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.removeItem('token');
+    window.localStorage.removeItem('token');
   }
 
   public register(user) {

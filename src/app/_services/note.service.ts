@@ -11,12 +11,12 @@ export class NoteService {
   constructor(private http: HttpClient, private baseService: BaseService) { }
 
   getNotes(): Observable<Note[]> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.get<Note[]>(this.baseService.baseUrl + this.notesUrl, httpOptions);
   }
 
   addNote(note: Note): Observable<Note> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.post<Note>(this.baseService.baseUrl + this.notesUrl, note, httpOptions).pipe(
       tap((newNote: Note) => console.log(`added note w/ id=${newNote.id}`),
         error => {
@@ -29,7 +29,7 @@ export class NoteService {
   }
 
   updateNote(note: Note): Observable<Note> {
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.put<Note>(this.baseService.baseUrl + this.notesUrl + `/${note.id}`, note, httpOptions).pipe(
       tap((newNote: Note) => console.log(`added updated w/ id=${newNote.id}`),
         error => {
@@ -43,7 +43,7 @@ export class NoteService {
 
   deleteNote(id: number): Observable<Note> {
     console.log('deleting', id);
-    const httpOptions = this.baseService.getAuthHttpHeaders();
+    const httpOptions = this.baseService.getHttpHeaders();
     return this.http.delete<Note>(this.baseService.baseUrl + this.notesUrl + '/' + id, httpOptions).pipe(
       tap((deltedNote: Note) => console.log(`deleted note w/ id=${id}`))
     );
