@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Folder } from '../folder';
+import { Folder } from '../models';
 import { FolderService } from '../_services/folder.service';
 
 

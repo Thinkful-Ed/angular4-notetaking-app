@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Note } from '../note';
+import { Note, Folder, Tag } from '../models';
 import { NoteService } from '../_services/note.service';
 import { FolderService } from '../_services/folder.service';
 import { TagService } from '../_services/tag.service';
-import { Folder } from '../folder';
-import { Tag } from '../tag';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 

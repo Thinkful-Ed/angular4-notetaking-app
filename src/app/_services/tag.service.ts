@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Tag } from '../tag';
+import { Tag } from '../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
